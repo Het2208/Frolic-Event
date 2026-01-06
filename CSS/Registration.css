@@ -1,0 +1,121 @@
+:root {
+  --floric-blue: #005096;
+  --floric-accent: #007bff;
+  --bg-light: #f4f7f9;
+}
+
+body {
+  background-color: var(--bg-light);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden; /* Prevents outer scrollbar */
+}
+
+.reg-wrapper {
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+.text-logo {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--floric-blue);
+  letter-spacing: 5px;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+  animation: slideInRight 1s ease-out forwards;
+}
+
+@keyframes slideInRight {
+  0% {
+    transform: translateX(100vw);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.reg-card {
+  background: #ffffff;
+  padding: 1.5rem 2rem;
+  border-radius: 25px;
+  box-shadow: 0 15px 45px rgba(0, 80, 150, 0.15);
+  text-align: left;
+  width: 100%;
+  height: auto;
+  /* Ensures no internal scrollbar while fitting the screen */
+  overflow: visible;
+  transition: all 0.3s ease-in-out;
+}
+
+.form-label {
+  color: var(--floric-blue);
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-bottom: 0.2rem;
+}
+
+.form-control,
+.form-select {
+  border: 2px solid #e1e8ed;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  transition: border-color 0.3s;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--floric-blue);
+  box-shadow: none;
+  outline: none;
+}
+
+.error-text {
+  color: #dc3545;
+  font-size: 0.7rem;
+  margin-top: 2px;
+  display: none;
+  line-height: 1;
+}
+
+.btn-floric {
+  background-color: var(--floric-accent);
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 12px;
+  margin-top: 0.8rem;
+  transition: background 0.3s;
+}
+
+.btn-floric:hover {
+  background-color: var(--floric-blue);
+  color: white;
+}
+
+.login-link {
+  margin-top: 0.8rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #6c757d;
+}
+
+.login-link a {
+  color: var(--floric-blue);
+  text-decoration: none;
+  font-weight: 700;
+}

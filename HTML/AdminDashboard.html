@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | FROLIC</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../CSS/AdminDashboard.css">
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <a href="AdminDashboard.html" class="navbar-brand-text">FROLIC</a>
+        <nav class="nav flex-column">
+            <a class="nav-link active" href="AdminDashboard.html"><i class="bi bi-speedometer2 me-2"></i> Dashboard</a>
+            <a class="nav-link" href="InstituteListPage.html"><i class="bi bi-bank me-2"></i> Institutes</a>
+            <a class="nav-link" href="DepartmentListPage.html"><i class="bi bi-building me-2"></i> Departments</a>
+            <a class="nav-link" href="EventListpage.html"><i class="bi bi-calendar-event me-2"></i> Events</a>
+            <a class="nav-link" href="ParticipantListPage.html"><i class="bi bi-people me-2"></i> Participants</a>
+            <a class="nav-link" href="GroupListPage.html"><i class="bi bi-microsoft-teams me-2"></i> Group List</a>
+            <a class="nav-link" href="WinnerDisplayPage.html"><i class="bi bi-trophy me-2"></i> Winners</a>
+        </nav>
+        <div class="mt-auto">
+            <a href="Login.html" class="nav-link text-danger border-top pt-3 rounded-0">
+                <i class="bi bi-box-arrow-left me-2"></i> Logout
+            </a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <header class="mb-5">
+            <h2 class="fw-bold">Admin Dashboard</h2>
+            <p class="text-muted">System Statistics Overview (Click cards to manage data)</p>
+        </header>
+
+        <div class="row g-4">
+            <div class="col-md-4 col-lg-2">
+                <a href="InstituteListPage.html" class="stat-link">
+                    <div class="stat-card">
+                        <div class="icon-box"><i class="bi bi-bank"></i></div>
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">Institutes</div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4 col-lg-2">
+                <a href="DepartmentListPage.html" class="stat-link">
+                    <div class="stat-card">
+                        <div class="icon-box"><i class="bi bi-building"></i></div>
+                        <div class="stat-number">45</div>
+                        <div class="stat-label">Departments</div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4 col-lg-2">
+                <a href="EventListpage.html" class="stat-link">
+                    <div class="stat-card">
+                        <div class="icon-box"><i class="bi bi-calendar-event"></i></div>
+                        <div class="stat-number">84</div>
+                        <div class="stat-label">Events</div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4 col-lg-2">
+                <a href="ParticipantListPage.html" class="stat-link">
+                    <div class="stat-card">
+                        <div class="icon-box"><i class="bi bi-people"></i></div>
+                        <div class="stat-number">1,250</div>
+                        <div class="stat-label">Participants</div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4 col-lg-2">
+                <a href="GroupListPage.html" class="stat-link">
+                    <div class="stat-card">
+                        <div class="icon-box"><i class="bi bi-microsoft-teams"></i></div>
+                        <div class="stat-number">320</div>
+                        <div class="stat-label">Groups</div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4 col-lg-2">
+                <a href="WinnerDisplayPage.html" class="stat-link">
+                    <div class="stat-card">
+                        <div class="icon-box"><i class="bi bi-trophy"></i></div>
+                        <div class="stat-number">25</div>
+                        <div class="stat-label">Winners</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,126 @@
+:root {
+  --floric-blue: #005096;
+  --floric-accent: #007bff;
+  --sidebar-bg: #ffffff;
+  --main-bg: #f8f9fa;
+  --sidebar-width: 260px;
+}
+
+body {
+  background-color: var(--main-bg);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+}
+
+.sidebar {
+  width: var(--sidebar-width);
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: var(--sidebar-bg);
+  border-right: 1px solid #dee2e6;
+  padding: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  margin-left: var(--sidebar-width);
+  padding: 40px;
+}
+
+.navbar-brand-text {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--floric-accent);
+  letter-spacing: 2px;
+  text-align: center;
+  display: block;
+  margin-bottom: 30px;
+  text-decoration: none;
+}
+
+.nav-link {
+  color: #333;
+  padding: 12px 15px;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  font-weight: 500;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.nav-link i {
+  font-size: 1.1rem;
+  width: 25px;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background: var(--floric-blue);
+  color: white !important;
+}
+
+.table-card {
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: none;
+}
+
+.dept-img-preview {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+}
+
+/* STICKY ACTIONS COLUMN */
+.table-responsive {
+  position: relative;
+}
+.table th:last-child,
+.table td:last-child {
+  position: sticky;
+  right: 0;
+  background-color: #ffffff;
+  z-index: 5;
+  border-left: 2px solid #dee2e6;
+}
+.table tr:hover td:last-child {
+  background-color: #f8f9fa;
+}
+
+.btn-action {
+  padding: 6px 12px;
+  border-radius: 8px;
+}
+
+/* Search Bar & Focus Styling */
+.search-container {
+  max-width: 300px;
+}
+.form-control:focus {
+  box-shadow: none !important;
+  border-color: #dee2e6 !important;
+  outline: none !important;
+}
+
+th.sortable {
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+th.sortable:hover {
+  color: var(--floric-blue);
+}
+.badge-fk {
+  font-size: 0.75rem;
+  font-weight: 500;
+}

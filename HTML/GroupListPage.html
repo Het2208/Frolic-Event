@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groups Management | FROLIC</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../CSS/GroupListPage.css">
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <a href="AdminDashboard.html" class="navbar-brand-text">FROLIC</a>
+        <nav class="nav flex-column">
+            <a class="nav-link" href="AdminDashboard.html"><i class="bi bi-speedometer2 me-2"></i> Dashboard</a>
+            <a class="nav-link" href="InstituteListPage.html"><i class="bi bi-bank me-2"></i> Institutes</a>
+            <a class="nav-link" href="DepartmentListPage.html"><i class="bi bi-building me-2"></i> Departments</a>
+            <a class="nav-link" href="EventListpage.html"><i class="bi bi-calendar-event me-2"></i> Events</a>
+            <a class="nav-link" href="ParticipantListPage.html"><i class="bi bi-people me-2"></i> Participants</a>
+            <a class="nav-link active" href="GroupListPage.html"><i class="bi bi-microsoft-teams me-2"></i> Group List</a>
+            <a class="nav-link" href="WinnerDisplayPage.html"><i class="bi bi-trophy me-2"></i> Winners</a>
+        </nav>
+        <div class="mt-auto">
+            <a href="Login.html" class="nav-link text-danger border-top pt-3 rounded-0">
+                <i class="bi bi-box-arrow-left me-2"></i> Logout
+            </a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <header class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold">Manage Groups</h2>
+            <div class="d-flex gap-3">
+                <div class="search-container">
+                    <div class="input-group">
+                        <span class="input-group-text bg-white border-end-0"><i class="bi bi-search text-muted"></i></span>
+                        <input type="text" id="searchInput" class="form-control border-start-0" placeholder="Search data...">
+                    </div>
+                </div>
+                <button class="btn btn-primary rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#groupModal" onclick="prepareAdd()">
+                    <i class="bi bi-plus-lg me-2"></i>Create Group
+                </button>
+            </div>
+        </header>
+
+        <div class="table-card">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle" id="groupTable" style="min-width: 1600px;">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="sortable" onclick="sortTable(0)">Group ID <i class="bi bi-sort-numeric-down"></i></th>
+                            <th class="sortable" onclick="sortTable(1)">Group Name <i class="bi bi-sort-alpha-down"></i></th>
+                            <th>Event ID</th>
+                            <th>Payment Status</th>
+                            <th>Attendance</th>
+                            <th>Created At</th>
+                            <th>Modified At</th>
+                            <th>Modified By</th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <tr>
+                            <td>201</td>
+                            <td class="fw-bold">Cyber Knights</td>
+                            <td><span class="badge bg-info-subtle text-info border">EVT_901</span></td>
+                            <td><span class="badge bg-success-subtle text-success border border-success badge-status">Done</span></td>
+                            <td><span class="badge bg-primary-subtle text-primary border border-primary badge-status">Present</span></td>
+                            <td>2026-01-01 09:00</td>
+                            <td>2026-01-01 14:30</td>
+                            <td><span class="badge bg-light text-dark border">USER_10</span></td>
+                            <td class="text-center">
+                                <div class="d-flex justify-content-center gap-2">
+                                    <button class="btn btn-outline-primary btn-action" data-bs-toggle="modal" data-bs-target="#groupModal" onclick="prepareEdit('Cyber Knights', 'EVT_901', 'true', 'true')" title="Edit"><i class="bi bi-pencil-square"></i></button>
+                                    <button class="btn btn-outline-danger btn-action" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal" title="Delete"><i class="bi bi-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+<!-- 
+    <div class="modal fade" id="groupModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-primary text-white" id="modalHeader">
+                    <h5 class="modal-title fw-bold" id="modalTitle">Create New Group</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="groupForm">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Group Name</label>
+                                <input type="text" id="gName" class="form-control" placeholder="Enter Group Name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Event ID (Foreign Key)</label>
+                                <input type="text" id="gEventId" class="form-control" placeholder="e.g. EVT_901" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Payment Status</label>
+                                <select id="gPayment" class="form-select">
+                                    <option value="false">Pending</option>
+                                    <option value="true">Done</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Attendance (Is Present?)</label>
+                                <select id="gPresent" class="form-select">
+                                    <option value="false">Absent</option>
+                                    <option value="true">Present</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold small text-muted">Created At</label>
+                                <input type="text" class="form-control form-control-sm bg-light" value="Auto-generated" readonly>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold small text-muted">Modified At</label>
+                                <input type="text" class="form-control form-control-sm bg-light" value="Auto-generated" readonly>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold small text-muted">Modified By</label>
+                                <input type="text" id="gModBy" class="form-control form-control-sm" placeholder="User ID">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer bg-light">
+                    <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" form="groupForm" class="btn btn-primary rounded-pill px-4" id="submitBtn">Save Group</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-body text-center p-5">
+                    <div class="text-danger mb-4">
+                        <i class="bi bi-exclamation-octagon" style="font-size: 4rem;"></i>
+                    </div>
+                    <h4 class="fw-bold">Delete Group?</h4>
+                    <p class="text-muted">This will permanently remove the group and its associations. This cannot be undone.</p>
+                    <div class="d-flex justify-content-center gap-3 mt-4">
+                        <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-danger rounded-pill px-4">Delete Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Modal State Management
+        function prepareAdd() {
+            document.getElementById('modalTitle').innerText = "Create New Group";
+            document.getElementById('modalHeader').className = "modal-header bg-primary text-white";
+            document.getElementById('submitBtn').className = "btn btn-primary rounded-pill px-4";
+            document.getElementById('submitBtn').innerText = "Save Group";
+            document.getElementById('groupForm').reset();
+        }
+
+        function prepareEdit(name, eventId, payment, present) {
+            document.getElementById('modalTitle').innerText = "Edit Group Details";
+            document.getElementById('modalHeader').className = "modal-header bg-warning text-dark";
+            document.getElementById('submitBtn').className = "btn btn-warning rounded-pill px-4 text-dark";
+            document.getElementById('submitBtn').innerText = "Update Changes";
+            
+            document.getElementById('gName').value = name;
+            document.getElementById('gEventId').value = eventId;
+            document.getElementById('gPayment').value = payment;
+            document.getElementById('gPresent').value = present;
+        }
+
+        // Real-time Search
+        document.getElementById('searchInput').addEventListener('keyup', function () {
+            let filter = this.value.toLowerCase();
+            let rows = document.querySelectorAll('#tableBody tr');
+            rows.forEach(row => {
+                let text = row.innerText.toLowerCase();
+                row.style.display = text.includes(filter) ? '' : 'none';
+            });
+        });
+
+        // Smart Sorting Logic
+        function sortTable(n) {
+            var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+            table = document.getElementById("groupTable");
+            switching = true; dir = "asc"; 
+            while (switching) {
+                switching = false; rows = table.tBodies[0].rows;
+                for (i = 0; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+                    x = rows[i].getElementsByTagName("TD")[n];
+                    y = rows[i + 1].getElementsByTagName("TD")[n];
+                    let xVal = isNaN(x.innerText) ? x.innerText.toLowerCase() : parseFloat(x.innerText);
+                    let yVal = isNaN(y.innerText) ? y.innerText.toLowerCase() : parseFloat(y.innerText);
+                    if (dir == "asc") { if (xVal > yVal) { shouldSwitch = true; break; }
+                    } else if (dir == "desc") { if (xVal < yVal) { shouldSwitch = true; break; } }
+                }
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true; switchcount++;
+                } else {
+                    if (switchcount == 0 && dir == "asc") { dir = "desc"; switching = true; }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

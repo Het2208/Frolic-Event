@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floric Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/Registration.css">
+</head>
+<body>
+
+    <div class="reg-wrapper">
+        <div class="text-logo">FROLIC</div>
+
+        <div class="reg-card">
+            <h5 class="text-center mb-3" style="color: var(--floric-blue); font-weight: 700;">Create Account</h5>
+            
+            <form id="regForm">
+                <div class="mb-2">
+                    <label class="form-label">User ID</label>
+                    <input type="text" id="userId" class="form-control" placeholder="Enter User ID">
+                    <div id="userError" class="error-text">Min 6 chars & include a digit.</div>
+                </div>
+                
+                <div class="mb-2">
+                    <label class="form-label">Email-ID</label>
+                    <input type="email" id="email" class="form-control" placeholder="Enter Email-ID">
+                    <div id="emailError" class="error-text">Enter a valid email address.</div>
+                </div>
+
+                <div class="mb-2">
+                    <label class="form-label">Password</label>
+                    <input type="password" id="password" class="form-control" placeholder="Enter Password">
+                    <div id="passError" class="error-text">Need 8+ chars, Uppercase & Special.</div>
+                </div>
+
+                <div class="mb-2">
+                    <label class="form-label">Select College</label>
+                    <select id="college" class="form-select">
+                        <option value="" selected disabled>Choose your college</option>
+                        <option value="darshan">Darshan University</option>
+                        <option value="msu">The Maharaja Sayajirao University (MSU)</option>
+                        <option value="atmiya">Atmiya University</option>
+                        <option value="marwadi">Marwadi University</option>
+                        <option value="agriculture">Agriculture University</option>
+                        <option value="aau">Anand Agricultural University</option>
+                        <option value="bmu">Bhagwan Mahavir University (BMU)</option>
+                        <option value="cipet">CIPET</option>
+                        <option value="cushah">C.U. Shah University</option>
+                        <option value="ddu">Dharmsinh Desai University (DDU)</option>
+                        <option value="ganpat">Ganpat University</option>
+                        <option value="gokul">Gokul University</option>
+                        <option value="gtu">Gujarat Technological University (GTU)</option>
+                        <option value="igtr">IGTR</option>
+                        <option value="itmvu">ITM Vocational University</option>
+                        <option value="jau">Junagadh Agricultural University</option>
+                        <option value="kpg">KPG University, Vadodara</option>
+                        <option value="ljk">LJK University, Ahmedabad</option>
+                        <option value="monark">Monark University</option>
+                        <option value="nirma">NIRMA University</option>
+                        <option value="parul">Parul University</option>
+                        <option value="rku">RK University (RKU)</option>
+                        <option value="silver">Silver Oak University</option>
+                        <option value="subhash">Subhash University</option>
+                    </select>
+                    <div id="collegeError" class="error-text">Please select a college.</div>
+                </div>
+
+                <div class="mb-2">
+                    <label class="form-label">Enrollment-ID</label>
+                    <input type="text" id="enrollmentId" class="form-control" placeholder="Enter Enrollment ID">
+                    <div id="enrollError" class="error-text">Enrollment ID is required (Min 5 chars).</div>
+                </div>
+
+                <button type="button" onclick="validateAndRegister()" class="btn btn-floric">Register Now</button>
+                
+                <p class="login-link">
+                    Already registered? <a href="Login.html">Login Here</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function validateAndRegister() {
+            const userRegex = /^(?=.*\d)[A-Za-z\d]{6,}$/; 
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
+            const passRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,})/; 
+
+            const userId = document.getElementById('userId').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const college = document.getElementById('college').value;
+            const enrollmentId = document.getElementById('enrollmentId').value;
+
+            document.querySelectorAll('.error-text').forEach(el => el.style.display = 'none');
+
+            let isValid = true;
+
+            if (!userRegex.test(userId)) {
+                document.getElementById('userError').style.display = 'block';
+                isValid = false;
+            }
+            if (!emailRegex.test(email)) {
+                document.getElementById('emailError').style.display = 'block';
+                isValid = false;
+            }
+            if (!passRegex.test(password)) {
+                document.getElementById('passError').style.display = 'block';
+                isValid = false;
+            }
+            if (!college) {
+                document.getElementById('collegeError').style.display = 'block';
+                isValid = false;
+            }
+            if (enrollmentId.trim().length < 5) {
+                document.getElementById('enrollError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (isValid) {
+                alert("Registration Successful!");
+                window.location.href = 'index.html';
+            }
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
