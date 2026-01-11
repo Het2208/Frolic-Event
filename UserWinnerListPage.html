@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Winner List | FROLIC</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./CSS/index.css">
+    <style>
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            transition: background-color 0.4s ease;
+        }
+
+        /* --- Seamless Table Container --- */
+        .table-card {
+            background: var(--bg-light); 
+            border-radius: 16px;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            margin-top: 2rem;
+            overflow: hidden;
+        }
+
+        /* --- Search Bar Styling --- */
+        .user-search-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-glass {
+            background: var(--bg-light) !important;
+            border: 1px solid var(--border-color) !important;
+            border-radius: 50px !important;
+            padding: 5px 15px;
+        }
+
+        .user-search-wrapper .form-control {
+            background: transparent !important;
+            border: none !important;
+            color: var(--text-main) !important;
+            font-weight: 500;
+        }
+
+        /* LOGO (ICON) COLOR SYNC */
+        .user-search-wrapper i {
+            color: var(--floric-blue);
+            transition: color 0.3s ease;
+        }
+
+        [data-theme="dark"] .user-search-wrapper i {
+            color: #ffffff !important; /* White logo in dark mode */
+        }
+
+        /* Placeholder Fix */
+        .user-search-wrapper .form-control::placeholder {
+            color: var(--text-main);
+            opacity: 0.6;
+        }
+
+        [data-theme="dark"] .user-search-wrapper .form-control::placeholder {
+            color: #ffffff !important;
+            opacity: 1 !important;
+        }
+
+        /* --- Standard Table Alignment --- */
+        .table {
+            color: var(--text-main) !important;
+            border-collapse: collapse; 
+            margin-bottom: 0;
+            width: 100%;
+            background-color: transparent !important;
+        }
+
+        thead th {
+            background-color: var(--bg-light) !important;
+            color: var(--floric-blue) !important;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            padding: 1.2rem 1rem !important;
+            border-bottom: 2px solid var(--border-color) !important;
+        }
+
+        /* DATA ROW COLOR SYNC */
+        .table td {
+            padding: 1.2rem 1rem !important;
+            border-bottom: 1px solid var(--border-color) !important;
+            vertical-align: middle;
+            background-color: transparent !important;
+            color: var(--text-main) !important;
+        }
+
+        /* Alternate row shading */
+        tbody tr:nth-child(even) td {
+            background-color: rgba(128, 128, 128, 0.02) !important;
+        }
+
+        [data-theme="dark"] tbody tr:nth-child(even) td {
+            background-color: rgba(255, 255, 255, 0.01) !important;
+        }
+
+        /* Rank Badge Styling */
+        .rank-badge {
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: bold;
+        }
+
+        .rank-1 { background: #ffd700; color: #000; } /* Gold */
+        .rank-2 { background: #c0c0c0; color: #000; } /* Silver */
+        .rank-3 { background: #cd7f32; color: #000; } /* Bronze */
+
+        .badge-fk {
+            font-size: 0.75rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            background: var(--card-bg) !important;
+            color: var(--floric-blue) !important;
+            border: 1px solid var(--border-color) !important;
+        }
+
+        th.sortable {
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        th.sortable:hover {
+            color: var(--floric-accent) !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg sticky-top custom-nav">
+        <div class="container">
+            <span class="navbar-brand-text">FROLIC</span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav mx-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link fw-bold" href="index.html">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle fw-bold active" href="#" data-bs-toggle="dropdown">Events</a>
+                        <ul class="dropdown-menu shadow">
+                            <li><a class="dropdown-item" href="UserInstituteListPage.html">Institution List</a></li>
+                            <li><a class="dropdown-item" href="UserDepartmentListPage.html">Department List</a></li>
+                            <li><a class="dropdown-item" href="UserEventListPage.html">All Events</a></li>
+                            <li><a class="dropdown-item" href="EventDetailListpage.html">Events Details</a></li>
+                            <li><a class="dropdown-item" href="UserParticipatListPage.html">Participant List</a></li>
+                            <li><a class="dropdown-item" href="UserGroupListPage.html">Group List</a></li>
+                            <li><a class="dropdown-item" href="UserWinnerListPage.html">Winner List</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link fw-bold" href="Gallary.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bold" href="About.html">What is FLORIC?</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bold" href="Contact.html">Contact Us</a></li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <div class="theme-switch-wrapper">
+                        <label class="theme-switch" for="checkbox">
+                            <input type="checkbox" id="checkbox" />
+                            <div class="slider">
+                                <span class="mode-icon">🌙</span>
+                                <span class="mode-icon">☀️</span>
+                            </div>
+                        </label>
+                    </div>
+                    <a href="Login.html" class="btn btn-login">Login</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold display-5" style="color: var(--floric-blue);">Event Winners</h2>
+            <p class="opacity-75 fs-5">Celebrating excellence and achievement at FROLIC 2026</p>
+        </div>
+
+        <div class="user-search-wrapper mb-4">
+            <div class="input-group search-glass">
+                <span class="input-group-text border-0 bg-transparent"><i class="bi bi-search"></i></span>
+                <input type="text" id="userInputSearch" class="form-control" placeholder="Search by event, group or ID...">
+            </div>
+        </div>
+
+        <div class="table-card">
+            <div class="table-responsive">
+                <table class="table align-middle" id="userWinnerTable">
+                    <thead>
+                        <tr>
+                            <th class="sortable" onclick="sortTable(0)">Winner ID <i class="bi bi-hash"></i></th>
+                            <th class="sortable" onclick="sortTable(1)">Event ID <i class="bi bi-tag"></i></th>
+                            <th class="sortable" onclick="sortTable(2)">Group ID <i class="bi bi-microsoft-teams"></i></th>
+                            <th class="sortable" onclick="sortTable(3)">Rank <i class="bi bi-trophy"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <tr>
+                            <td class="fw-bold">7001</td>
+                            <td><span class="badge badge-fk">EVT_901</span></td>
+                            <td><span class="badge badge-fk">GRP_201</span></td>
+                            <td>
+                                <div class="d-flex align-items-center gap-2">
+                                    <span class="rank-badge rank-1">1</span>
+                                    <span class="fw-bold" style="color: #ffd700;">1st Place</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">7002</td>
+                            <td><span class="badge badge-fk">EVT_901</span></td>
+                            <td><span class="badge badge-fk">GRP_255</span></td>
+                            <td>
+                                <div class="d-flex align-items-center gap-2">
+                                    <span class="rank-badge rank-2">2</span>
+                                    <span class="fw-bold" style="color: #c0c0c0;">2nd Place</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center mt-5">
+        <div class="container py-4 border-top border-secondary opacity-25">
+            <p class="mb-1 fw-bold" style="color: var(--floric-blue);">FROLIC 2026</p>
+            <p class="small mb-0">&copy; Event Management Portal</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const checkbox = document.getElementById('checkbox');
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        if (currentTheme === 'dark') checkbox.checked = true;
+
+        checkbox.addEventListener('change', function () {
+            const theme = this.checked ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+        });
+
+        document.getElementById('userInputSearch').addEventListener('keyup', function () {
+            let filter = this.value.toLowerCase();
+            let rows = document.querySelectorAll('#tableBody tr');
+            rows.forEach(row => {
+                let text = row.innerText.toLowerCase();
+                row.style.display = text.includes(filter) ? '' : 'none';
+            });
+        });
+
+        function sortTable(n) {
+            var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+            table = document.getElementById("userWinnerTable");
+            switching = true; dir = "asc"; 
+            while (switching) {
+                switching = false; rows = table.tBodies[0].rows;
+                for (i = 0; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+                    x = rows[i].getElementsByTagName("TD")[n];
+                    y = rows[i + 1].getElementsByTagName("TD")[n];
+                    let xVal = isNaN(x.innerText) ? x.innerText.toLowerCase() : parseFloat(x.innerText);
+                    let yVal = isNaN(y.innerText) ? y.innerText.toLowerCase() : parseFloat(y.innerText);
+                    if (dir == "asc") { if (xVal > yVal) { shouldSwitch = true; break; }
+                    } else if (dir == "desc") { if (xVal < yVal) { shouldSwitch = true; break; } }
+                }
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true; switchcount++;
+                } else {
+                    if (switchcount == 0 && dir == "asc") { dir = "desc"; switching = true; }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
