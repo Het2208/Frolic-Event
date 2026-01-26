@@ -1,0 +1,286 @@
+:root {
+  --floric-blue: #005096;
+  --floric-accent: #007bff;
+  --sidebar-bg: #ffffff;
+  --main-bg: #f8f9fa;
+  --card-bg: #ffffff;
+  --text-main: #000000;
+  --border-color: #dee2e6;
+  --icon-box-bg: #005096;
+}
+
+[data-theme="dark"] {
+  --sidebar-bg: #111827;
+  --main-bg: #0f172a;
+  --card-bg: #1e293b;
+  --text-main: #ffffff;
+  --border-color: #334155;
+  --icon-box-bg: #005096;
+}
+
+body {
+  background-color: var(--main-bg);
+  color: var(--text-main);
+  font-family: "Segoe UI", sans-serif;
+  margin: 0;
+  overflow-x: hidden;
+  transition: all 0.3s ease;
+}
+
+/* --- SIDEBAR --- */
+.sidebar {
+  width: 280px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--border-color);
+  padding: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar.collapsed {
+  transform: translateX(-100%);
+}
+
+.main-content {
+  margin-left: 280px;
+  padding: 40px;
+  transition: margin-left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.main-content.expanded {
+  margin-left: 0;
+}
+
+/* Sidebar Elements */
+.navbar-brand-text {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--floric-accent);
+  text-decoration: none;
+  display: block;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.nav-link {
+  color: var(--text-main);
+  padding: 12px 15px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background: var(--floric-blue);
+  color: white !important;
+}
+
+.profile-container {
+  border: 1px solid var(--border-color);
+  background: rgba(0, 0, 0, 0.03);
+  margin-bottom: 20px;
+}
+
+[data-theme="dark"] .profile-container {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .profile-text .text-muted {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+[data-theme="dark"] .text-muted {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* --- HEADER & TOGGLE --- */
+.btn-menu {
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  background: var(--card-bg);
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* --- THEME SWITCH --- */
+.theme-switch-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.theme-switch {
+  display: inline-block;
+  height: 30px;
+  position: relative;
+  width: 54px;
+}
+
+.theme-switch input {
+  display: none;
+}
+
+.slider {
+  background-color: #4b5563;
+  border-radius: 34px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0.4s;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 4px;
+}
+
+.slider:before {
+  background-color: white;
+  border-radius: 50%;
+  content: "";
+  height: 22px;
+  width: 22px;
+  position: absolute;
+  left: 4px;
+  bottom: 4px;
+  transition: 0.4s;
+  z-index: 2;
+}
+
+input:checked + .slider {
+  background: var(--floric-blue);
+}
+
+input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+.mode-icon {
+  font-size: 12px;
+  z-index: 1;
+  color: #fff;
+}
+
+/* --- TABLE STYLES --- */
+.table-card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 25px;
+  border: 1px solid var(--border-color);
+}
+
+.table {
+  color: var(--text-main);
+}
+
+[data-theme="dark"] .table th,
+[data-theme="dark"] .table td {
+  background: var(--card-bg);
+  color: #ffffff;
+  border-color: var(--border-color);
+}
+
+.table th {
+  background-color: var(--card-bg); /* Ensure header matches in light mode too if needed */
+}
+
+/* Sticky Action Column */
+.table th:last-child,
+.table td:last-child {
+  position: sticky;
+  right: 0;
+  background: var(--card-bg); /* Critical for hiding scroll content */
+  text-align: center;
+  z-index: 5;
+  border-left: 2px solid var(--border-color);
+}
+
+/* Fix sticky column background in dark mode */
+[data-theme="dark"] .table th:last-child,
+[data-theme="dark"] .table td:last-child {
+  background: var(--card-bg);
+  border-left: 2px solid var(--border-color);
+}
+
+.btn-action {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.btn-action:hover {
+  background-color: var(--floric-blue);
+  color: white;
+  border-color: var(--floric-blue);
+}
+
+/* --- MODAL DARK MODE FIX --- */
+[data-theme="dark"] .modal-content {
+  background-color: var(--card-bg);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .modal-header {
+  border-bottom-color: var(--border-color);
+}
+
+[data-theme="dark"] .modal-footer {
+  border-top-color: var(--border-color);
+  background-color: var(--card-bg) !important; /* Override bootstrap light bg */
+}
+
+[data-theme="dark"] .btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* --- FORM INPUTS DARK MODE --- */
+[data-theme="dark"] .form-control,
+[data-theme="dark"] .form-select {
+  background-color: #0f172a; /* Darker than card */
+  border-color: var(--border-color);
+  color: #ffffff;
+}
+
+[data-theme="dark"] .form-control::placeholder {
+  color: #ffffff; /* User requested White in Dark Mode */
+  opacity: 1;
+}
+
+/* Light Mode Placeholder */
+.form-control::placeholder {
+  color: #000000; /* User requested Black in Light Mode */
+  opacity: 0.6;
+}
+
+[data-theme="dark"] .form-control:focus,
+[data-theme="dark"] .form-select:focus {
+  background-color: #0f172a;
+  color: #ffffff;
+  border-color: var(--floric-accent);
+  box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+}
+
+/* Fix for disabled inputs in dark mode */
+[data-theme="dark"] .form-control:disabled,
+[data-theme="dark"] .form-control[readonly] {
+  background-color: #334155;
+  opacity: 1;
+}

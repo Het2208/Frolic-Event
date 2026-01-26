@@ -1,94 +1,62 @@
-:root {
-  --floric-blue: #005096;
-  --floric-accent: #007bff;
-  --sidebar-bg: #ffffff;
-  --main-bg: #f8f9fa;
-}
-
-body {
-  background-color: var(--main-bg);
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0;
-}
-
-/* Sidebar Styling */
-.sidebar {
-  width: 260px;
-  height: 100vh;
-  position: fixed;
-  left: 0;
-  top: 0;
-  background: var(--sidebar-bg);
-  border-right: 1px solid #dee2e6;
-  padding: 20px;
-  z-index: 1000;
-  display: flex;
-  flex-direction: column;
-}
-
-.main-content {
-  margin-left: 260px;
-  padding: 40px;
-}
-
+/* UI Elements */
 .navbar-brand-text {
   font-size: 1.5rem;
   font-weight: 800;
   color: var(--floric-accent);
-  letter-spacing: 2px;
-  text-align: center;
+  text-decoration: none;
   display: block;
   margin-bottom: 30px;
-  text-decoration: none;
+  text-align: center;
 }
-
 .nav-link {
-  color: #333;
+  color: var(--text-main);
   padding: 12px 15px;
   border-radius: 10px;
-  margin-bottom: 5px;
-  font-weight: 500;
-  transition: 0.3s;
+  margin-bottom: 8px;
   display: flex;
   align-items: center;
   text-decoration: none;
+  transition: 0.3s;
 }
-
-.nav-link i {
-  font-size: 1.1rem;
-  width: 25px;
-}
-
 .nav-link:hover,
 .nav-link.active {
   background: var(--floric-blue);
   color: white !important;
 }
 
-/* Statistics Card Styling - Added clickable logic */
+/* Statistics Cards */
 .stat-link {
-  text-decoration: none;
+  text-decoration: none !important;
   color: inherit;
-  display: block;
 }
-
 .stat-card {
-  background: #ffffff;
-  border-radius: 15px;
+  background: var(--card-bg);
+  border-radius: 16px;
   padding: 25px;
-  border: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border-color);
   transition: all 0.3s ease;
-  cursor: pointer;
   height: 100%;
 }
-
 .stat-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 80, 150, 0.15);
-  border: 1px solid var(--floric-accent);
+  border-color: var(--floric-accent);
+  box-shadow: 0 8px 24px rgba(0, 123, 255, 0.3);
+  transform: translateY(-3px);
+}
+.stat-number {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-main);
+  display: block;
+}
+.stat-label {
+  color: var(--text-main);
+  opacity: 0.6;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
+/* Icon Box Visibility */
 .icon-box {
   width: 50px;
   height: 50px;
@@ -96,23 +64,80 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
-  background: rgba(0, 80, 150, 0.1);
-  color: var(--floric-blue);
+  font-size: 22px;
+  background: var(--icon-box-bg);
+  color: #ffffff;
   margin-bottom: 15px;
 }
 
-.stat-number {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #212529;
-  margin-bottom: 5px;
+/* Theme Toggle Styling */
+.theme-switch-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+.theme-switch {
+  display: inline-block;
+  height: 30px;
+  position: relative;
+  width: 54px;
+}
+.theme-switch input {
+  display: none;
+}
+.slider {
+  background-color: #4b5563;
+  border-radius: 34px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0.4s;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 4px;
+}
+.slider:before {
+  background-color: white;
+  border-radius: 50%;
+  content: "";
+  height: 22px;
+  width: 22px;
+  position: absolute;
+  left: 4px;
+  bottom: 4px;
+  transition: 0.4s;
+  z-index: 2;
+}
+input:checked + .slider {
+  background: var(--floric-blue);
+}
+input:checked + .slider:before {
+  transform: translateX(24px);
+}
+.mode-icon {
+  font-size: 12px;
+  z-index: 1;
+  color: #fff;
 }
 
-.stat-label {
-  color: #6c757d;
-  font-size: 0.9rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+.profile-container {
+  border: 1px solid var(--border-color);
+  background: rgba(0, 0, 0, 0.03);
+  margin-bottom: 20px;
+}
+[data-theme="dark"] .profile-container {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.btn-menu {
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  background: var(--card-bg);
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
 }
