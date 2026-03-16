@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -44,17 +44,6 @@
         </nav>
 
         <div class="mt-auto px-3 pb-4">
-            <div class="theme-switch-wrapper">
-                <label class="theme-switch" for="checkbox">
-                    <input type="checkbox" id="checkbox" onclick="toggleTheme()" />
-                    <div class="slider">
-                        <span class="mode-icon">🌙</span>
-                        <span class="mode-icon">☀️</span>
-                    </div>
-                </label>
-                <span class="ms-2 small theme-label">Light Mode</span>
-            </div>
-
             <a href="Login.html" class="nav-link text-danger border-top pt-3 rounded-0 mt-3">
                 <i class="bi bi-box-arrow-left me-2"></i> <span>Logout</span>
             </a>
@@ -74,11 +63,8 @@
             <div class="d-flex gap-3">
                 <div class="search-container">
                     <div class="input-group">
-                        <span class="input-group-text bg-white border-end-0">
-                            <i class="bi bi-search text-muted"></i>
-                        </span>
-                        <input type="text" id="searchInput" class="form-control border-start-0"
-                            placeholder="Search data...">
+                        <span class="input-group-text"><i class="bi bi-search"></i></span>
+                        <input type="text" id="searchInput" class="form-control" placeholder="Search data...">
                     </div>
                 </div>
 
@@ -106,38 +92,7 @@
                         </tr>
                     </thead>
 
-                    <tbody id="tableBody">
-                        <tr>
-                            <td>1</td>
-                            <td>
-                                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=100"
-                                    class="dept-img-preview">
-                            </td>
-                            <td>
-                                <div class="fw-bold">ABC Institute</div>
-                                <small class="text-muted d-block text-truncate" style="max-width: 180px;">
-                                    Leading institute for engineering and management studies.
-                                </small>
-                            </td>
-                            <td><span class="badge bg-light border">USER_022</span></td>
-                            <td><span class="badge bg-light border">ADMIN_01</span></td>
-                            <td>2026-01-01 10:00 AM</td>
-                            <td>2026-01-10 04:30 PM</td>
-                            <td class="text-center">
-                                <div class="d-flex justify-content-center gap-2">
-                                    <button class="btn btn-outline-primary btn-action" data-bs-toggle="modal"
-                                        data-bs-target="#instModal"
-                                        onclick="prepareEdit('ABC Institute','USER_022','Leading institute for engineering and management studies.')">
-                                        <i class="bi bi-pencil-square"></i>
-                                    </button>
-                                    <button class="btn btn-outline-danger btn-action" data-bs-toggle="modal"
-                                        data-bs-target="#deleteConfirmModal">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
+                    <tbody id="tableBody"></tbody>
                 </table>
             </div>
         </div>
@@ -214,6 +169,49 @@
     <script src="./JS/common.js"></script>
 
     <script>
+        async function loadInstitutes() {
+            try {
+                const res = await fetch("http://localhost:3000/api/institutes");
+                const data = await res.json();
+
+                const tableBody = document.getElementById("tableBody");
+                tableBody.innerHTML = "";
+
+                data.forEach(inst => {
+                    tableBody.innerHTML += `
+                <tr>
+                    <td>${inst.InstituteID}</td>
+                    <td>
+                        <img src="${inst.InsituteImage || 'https://via.placeholder.com/60'}"
+                             class="dept-img-preview">
+                    </td>
+                    <td>
+                        <div class="fw-bold">${inst.InstituteName}</div>
+                    </td>
+                    <td><span class="badge bg-light border">${inst.InsituteDescription}</span></td>
+                    <td><span class="badge bg-light border">${inst.ModifiedBy}</span></td>
+                    <td>${new Date(inst.CreatedAt).toLocaleString()}</td>
+                    <td>${new Date(inst.ModifiedAt).toLocaleString()}</td>
+                    <td class="text-center">
+                        <button class="btn btn-outline-primary btn-action">
+                            <i class="bi bi-pencil-square"></i>
+                        </button>
+                        <button class="btn btn-outline-danger btn-action">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `;
+                });
+
+            } catch (err) {
+                console.log("Error loading institutes:", err);
+            }
+        }
+
+        loadInstitutes();
+
+
         function prepareAdd() {
             modalTitle.innerText = "Add New Institute";
             modalHeader.className = "modal-header bg-primary text-white";

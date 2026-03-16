@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -47,17 +47,6 @@
         </nav>
 
         <div class="mt-auto px-3 pb-4">
-            <div class="theme-switch-wrapper">
-                <label class="theme-switch" for="checkbox">
-                    <input type="checkbox" id="checkbox" onclick="toggleTheme()" />
-                    <div class="slider">
-                        <span class="mode-icon">🌙</span>
-                        <span class="mode-icon">☀️</span>
-                    </div>
-                </label>
-                <span class="ms-2 small theme-label">Light Mode</span>
-            </div>
-
             <a href="Login.html" class="nav-link text-danger border-top pt-3 rounded-0 mt-3">
                 <i class="bi bi-box-arrow-left me-2"></i> <span>Logout</span>
             </a>
@@ -65,13 +54,14 @@
     </div>
 
     <div class="main-content" id="mainContent">
-        <header class="mb-5 d-flex align-items-center">
+        <header class="mb-4 d-flex align-items-center">
             <button class="btn btn-menu me-3" onclick="toggleSidebar()">
                 <i class="bi bi-list fs-4"></i>
             </button>
             <h2 class="fw-bold mb-0">Admin Dashboard</h2>
         </header>
 
+        <h4 class="fw-bold mb-3 text-white">Analytics Overview</h4>
         <div class="row g-4">
             <div class="col-md-4 col-lg-2">
                 <a href="InstituteListPage.html" class="stat-link">

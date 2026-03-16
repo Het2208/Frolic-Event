@@ -1,0 +1,106 @@
+        :root {
+            /* Precise Light Mode Palette */
+            --floric-blue: #005096;
+            --floric-accent: #007bff;
+            --bg-light: #f4f7f9;
+            --text-main: #212529;
+            --card-bg: #ffffff;
+            --nav-font-size: 1.1rem;
+            --border-color: rgba(0, 0, 0, 0.1);
+            --form-border-light: #333333; 
+        }
+
+        [data-theme="dark"] {
+            /* Precise Dark Mode Palette */
+            --bg-light: #0f172a;
+            --text-main: #e2e8f0;
+            --card-bg: #1e293b;
+            --floric-blue: #38bdf8;
+            --floric-accent: #60a5fa;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --form-border-light: rgba(255, 255, 255, 0.2); 
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.4s ease, color 0.4s ease;
+            margin: 0;
+        }
+
+        .main-viewport {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        /* Form Styling */
+        .contact-content { flex: 1; display: flex; align-items: center; justify-content: center; padding: 20px; }
+
+        .direct-contact-bar {
+            background: rgba(0, 123, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 15px 30px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            max-width: 700px;
+        }
+
+        .contact-pill {
+            color: var(--floric-blue);
+            text-decoration: none;
+            font-weight: 700;
+            display: flex; align-items: center; gap: 10px; transition: 0.3s;
+        }
+
+        .contact-card {
+            background: var(--card-bg);
+            border-radius: 25px;
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15);
+            padding: 35px;
+            width: 100%;
+            max-width: 700px;
+            border: 1px solid var(--border-color);
+        }
+
+        .form-control {
+            border-radius: 10px;
+            padding: 10px;
+            border: 1px solid var(--form-border-light);
+            background: transparent;
+            color: var(--text-main);
+        }
+
+        .form-control:focus {
+            background: transparent;
+            color: var(--text-main);
+            border-color: var(--floric-blue);
+            box-shadow: none;
+        }
+
+        [data-theme="dark"] .form-control::placeholder { color: rgba(226, 232, 240, 0.5); opacity: 1; }
+
+        .submit-btn {
+            background: var(--floric-accent);
+            color: white;
+            font-weight: 700;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            width: 100%;
+            margin-top: 15px;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover { background: var(--floric-blue); }
+
+        .error-msg { color: #dc3545; font-size: 0.75rem; margin-top: 4px; display: none; }
+
+        footer { background: var(--card-bg); border-top: 1px solid var(--border-color); padding: 30px 0; }
+

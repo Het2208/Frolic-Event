@@ -1,0 +1,68 @@
+        :root {
+            --floric-blue: #005096;
+            --floric-accent: #007bff;
+            --bg-light: #f4f7f9;
+            --text-main: #212529;
+            --card-bg: #ffffff;
+            --nav-font-size: 1.1rem;
+            --border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --bg-light: #0f172a;
+            --text-main: #e2e8f0;
+            --card-bg: #1e293b;
+            --floric-blue: #38bdf8;
+            --floric-accent: #60a5fa;
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.4s ease, color 0.4s ease;
+            margin: 0;
+        }
+
+
+
+        /* Requested Content Box */
+        .content-box {
+            background: var(--card-bg);
+            border-radius: 25px;
+            padding: 40px;
+            border: 2px solid var(--floric-blue);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            transition: background-color 0.4s ease;
+        }
+
+        /* Accordion Customization */
+        .accordion-item {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            margin-bottom: 12px;
+            border-radius: 12px !important;
+            overflow: hidden;
+        }
+
+        .accordion-button {
+            background-color: var(--card-bg);
+            color: var(--floric-blue);
+            font-weight: 700;
+        }
+
+        .accordion-button:not(.collapsed) {
+            background-color: var(--floric-blue);
+            color: white;
+        }
+
+        [data-theme="dark"] .accordion-body { color: #ffffff !important; }
+
+        [data-theme="dark"] .accordion-button::after {
+            filter: brightness(0) invert(1);
+        }
+
+        footer { background: var(--card-bg); border-top: 1px solid var(--border-color); padding: 40px 0; }
+

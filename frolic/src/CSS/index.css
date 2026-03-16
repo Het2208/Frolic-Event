@@ -1,0 +1,170 @@
+:root {
+  --floric-blue: #005096;
+  --floric-accent: #007bff;
+  --bg-light: #f4f7f9;
+  --text-main: #212529;
+  --card-bg: #ffffff;
+  --border-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+  --bg-light: #0f172a;
+  --text-main: #e2e8f0;
+  --card-bg: #1e293b;
+  --floric-blue: #38bdf8;
+  --floric-accent: #60a5fa;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+body {
+  background-color: var(--bg-light);
+  color: var(--text-main);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  transition: background-color 0.4s ease, color 0.4s ease;
+  margin: 0;
+}
+
+
+/* Hero and other sections */
+.hero-banner {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+      135deg,
+      rgba(15, 23, 42, 0.8),
+      rgba(0, 80, 150, 0.6)
+    ),
+    url("https://admissiondone.com/wp-content/uploads/2025/05/maxresdefault.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: white;
+  text-align: center;
+  padding: 60px 0;
+}
+
+.hero-glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 50px;
+  border-radius: 30px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+}
+
+.info-pill {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px 25px;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  min-width: 180px;
+}
+
+.register-btn {
+  background: #fff;
+  color: #005096;
+  font-weight: 700;
+  padding: 15px 45px;
+  border-radius: 50px;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+/* --- Event Card Styling --- */
+.event-card {
+  background: var(--card-bg);
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  height: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.event-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  border-color: var(--floric-blue);
+}
+
+.event-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.fee-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: var(--floric-blue);
+  color: white;
+  padding: 5px 15px;
+  border-radius: 50px;
+  font-weight: 700;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+/* --- Search Bar Styling --- */
+.user-search-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.search-glass {
+  background: var(--bg-light) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 50px !important;
+  padding: 5px 15px;
+}
+
+.user-search-wrapper .form-control {
+  background: transparent !important;
+  border: none !important;
+  color: var(--text-main) !important;
+  font-weight: 500;
+}
+
+.user-search-wrapper i {
+  color: var(--floric-blue);
+  transition: color 0.3s ease;
+}
+
+.user-search-wrapper .form-control::placeholder {
+  color: var(--text-main);
+  opacity: 0.6;
+}
+
+/* --- Modal Styling --- */
+.modal-content {
+  background: var(--card-bg);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  border-radius: 25px;
+}
+
+.detail-label {
+  color: var(--floric-blue);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.detail-value {
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.prize-box {
+  background: rgba(56, 189, 248, 0.1);
+  border-radius: 12px;
+  padding: 15px;
+  border-left: 4px solid var(--floric-blue);
+}
